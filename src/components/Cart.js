@@ -1,36 +1,32 @@
-import React from 'react';
-import { Container, Table, Button } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { CartContext } from '../components/Cartcontext';
 
-const Cart = ({ cartItems }) => (
-  <Container>
-    <h2>Your Cart</h2>
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        {cartItems.map((item, index) => (
-          <tr key={item.id}>
-            <td>{index + 1}</td>
-            <td>{item.name}</td>
-            <td>
-              <Button variant="light">-</Button> {item.quantity} <Button variant="light">+</Button>
-            </td>
-            <td>{item.price}</td>
-            <td>{item.price * item.quantity}</td>
-          </tr>
-        ))}
-      </tbody>
-    </Table>
-    <h4>Total: $TOTAL</h4>
-    <Button variant="success">Proceed to Checkout</Button>
-  </Container>
-);
+const Cart = () => {
+  const { cartItems, removeFromCart } = useContext(CartContext); // Get cartItems and removeFromCart
+
+  return (
+    <div>
+      <h2>Your Cart</h2>
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty!</p>
+      ) : (
+        <ul className="list-group">
+          {cartItems.map((item) => (
+            <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <h5>{item.name}</h5>
+                <p>Quantity: {item.quantity}</p>
+                <p>Price: {item.price}</p>
+              </div>
+              <button className="btn btn-danger" onClick={() => removeFromCart(item.id)}>
+                Remove
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
 
 export default Cart;

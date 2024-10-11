@@ -12,7 +12,7 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 import ChangePassword from './components/ChangePassword';
-import CartProvider from './context/Cartcontext';
+import CartProvider from './components/Cartcontext';
 
 const products = [
   { id: '1', name: 'Laptop', price: '$1000', image: '/path/to/laptop.jpg', description: 'High-performance laptop', category: 'Electronics' },
