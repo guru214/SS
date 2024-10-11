@@ -10,18 +10,19 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('/api/register', formData);
-      setMessage(response.data.message);
-    } catch (error) {
-      setMessage(error.response.data.error);
-    }
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await axios.post('/api/register', formData);
+  //     setMessage(response.data.message);
+  //   } catch (error) {
+  //     setMessage(error.response.data.error);
+  //   }
+  // };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    // <Form onSubmit={handleSubmit}>
+    <Form>
       <h2>Register</h2>
       {message && <Alert variant="info">{message}</Alert>}
       <Form.Group>

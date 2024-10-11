@@ -6,13 +6,13 @@ const EditProfile = ({ userId }) => {
   const [formData, setFormData] = useState({ username: '', email: '', phone: '' });
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const response = await axios.get(`/api/${userId}`);
-      setFormData(response.data);
-    };
-    fetchUser();
-  }, [userId]);
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     const response = await axios.get(`/api/${userId}`);
+  //     setFormData(response.data);
+  //   };
+  //   fetchUser();
+  // }, [userId]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

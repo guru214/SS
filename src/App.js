@@ -39,9 +39,9 @@ const App = () => {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile/" element={<Profile />} />
-        <Route path="/edit-profile/" element={<EditProfile />} />
-        <Route path="/change-password/" element={<ChangePassword />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/change-password" element={<ChangePassword />} />
       </Routes>
     </Router>
     </CartProvider>
