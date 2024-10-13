@@ -15,6 +15,7 @@ import ChangePassword from './components/ChangePassword';
 import CartProvider from './components/Cartcontext';
 
 
+
 const products = [
   { id: '1', name: 'Laptop', price: '$1000', image: '/path/to/laptop.jpg', description: 'High-performance laptop', category: 'Electronics' },
   { id: '2', name: 'T-Shirt', price: '$20', image: '/path/to/tshirt.jpg', description: 'Comfortable cotton t-shirt', category: 'Fashion' },

@@ -1,62 +1,86 @@
 import React from 'react';
-import { Navbar, Nav, Container, Form, FormControl, Button, Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { FaShoppingCart, FaUserCircle } from 'react-icons/fa';
+import { Navbar, Nav, NavDropdown, Container, Form, FormControl, Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import './Navigation.css';  // Custom CSS for additional styling
 
-const Navigation = ({ user, setUser }) => {
-  const handleLogout = () => {
-    setUser(null); // Clear user state on logout
-  };
-
+const Navigation = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="light" expand="lg" className="shadow-sm">
       <Container>
-        <Navbar.Brand as={Link} to="/">MyShop</Navbar.Brand>
+        {/* Navbar Brand/Logo */}
+        <LinkContainer to="/">
+          <Navbar.Brand className="brand-logo">E-Commerce</Navbar.Brand>
+        </LinkContainer>
+
+        {/* Toggler for mobile view */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+        {/* Collapsible Navbar */}
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/categories">Categories</Nav.Link>
-            <Nav.Link as={Link} to="/products">Products</Nav.Link>
-          </Nav>
-          <Form className="d-flex">
-            <FormControl type="search" placeholder="Search" className="mr-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-          <Nav>
-            <Nav.Link as={Link} to="/cart">
-              <FaShoppingCart size={30} color="white" />
-            </Nav.Link>
-            {user ? (
-              <Dropdown align="end">
-                <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
-                  <FaUserCircle size={30} color="white" />
-                </Dropdown.Toggle>
+          <Nav className="ml-auto flex-grow-1 justify-content-between">
 
-                <Dropdown.Menu>
-                  {/* <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/edit-profile">Edit Profile</Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/change-password">Change Password</Dropdown.Item> */}
-                  <Dropdown.Divider />
-                  <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            ) : (
-              <Dropdown align="end">
-                <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
-                  <FaUserCircle size={30} color="white" />
-                </Dropdown.Toggle>
+            {/* Home Link */}
+            <LinkContainer to="/">
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
 
-                <Dropdown.Menu>
-                  <Dropdown.Item as={Link} to="/login">Login</Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/register">Register</Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/edit-profile">Edit Profile</Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/change-password">Change Password</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            )}
+            {/* Dropdown for Categories */}
+            <NavDropdown title="Categories" id="categories-dropdown">
+              <LinkContainer to="/category/electronics">
+                <NavDropdown.Item>Electronics</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/category/fashion">
+                <NavDropdown.Item>Fashion</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/category/furniture">
+                <NavDropdown.Item>Furniture</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/category/home-appliances">
+                <NavDropdown.Item>Home Appliances</NavDropdown.Item>
+              </LinkContainer>
+            </NavDropdown>
+
+            {/* Centered Search Bar */}
+            <Form className="d-flex w-75 mx-auto">
+              <FormControl
+                type="search"
+                placeholder="Search for products"
+                className="mr-sm-2"
+                aria-label="Search"
+                style={{ width: '100%' }}  // Ensure the search bar spans the full width of the container
+              />
+              <Button variant="outline-success">Search</Button>
+            </Form>
+            
           </Nav>
+
+          <Nav className="ml-auto">
+            {/* Cart */}
+            <LinkContainer to="/cart">
+              <Nav.Link>
+                <i className="fas fa-shopping-cart"></i> Cart
+              </Nav.Link>
+            </LinkContainer>
+
+            {/* Profile Dropdown */}
+            <NavDropdown title={<i className="fas fa-user"></i>} id="profile-dropdown">
+              <LinkContainer to="/register">
+                <NavDropdown.Item>Register</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/profile">
+                <NavDropdown.Item>Profile</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/edit-profile">
+                <NavDropdown.Item>Edit Profile</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/change-password">
+                <NavDropdown.Item>Change Password</NavDropdown.Item>
+              </LinkContainer>
+              <NavDropdown.Divider />
+              <NavDropdown.Item>Logout</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>
