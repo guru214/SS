@@ -64,6 +64,9 @@ const Navigation = () => {
 
             {/* Profile Dropdown */}
             <NavDropdown title={<i className="fas fa-user"></i>} id="profile-dropdown">
+              <LinkContainer to="/login">
+                <NavDropdown.Item>Login</NavDropdown.Item>
+              </LinkContainer>
               <LinkContainer to="/register">
                 <NavDropdown.Item>Register</NavDropdown.Item>
               </LinkContainer>
