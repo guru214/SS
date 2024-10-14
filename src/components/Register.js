@@ -1,79 +1,106 @@
 import React, { useState } from 'react';
-import './Register.css'; // Import the CSS file for styling
+import axios from 'axios';
 
-const Register = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false); // State for password visibility
+const RegisterForm = () => {
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        phone: '',
+        password: '',
+        dateOfBirth: '',
+        address: {
+            street: '',
+            city: '',
+            state: '',
+            postalCode: '',
+            country: ''
+        }
+    });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic
-    console.log('Registering:', { name, email, password });
-  };
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
 
-  const togglePasswordVisibility = () => {
-    setIsPasswordVisible(!isPasswordVisible); // Toggle the password visibility state
-  };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        if (name.startsWith('address.')) {
+            const addressField = name.split('.')[1];
+            setFormData((prevState) => ({
+                ...prevState,
+                address: {
+                    ...prevState.address,
+                    [addressField]: value
+                }
+            }));
+        } else {
+            setFormData((prevState) => ({
+                ...prevState,
+                [name]: value
+            }));
+        }
+    };
 
-  return (
-    <div className="register-container">
-      <div className="register-form">
-        <h2>Register</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your full name"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email address"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <div className="password-container">
-              <input
-                type={isPasswordVisible ? "text" : "password"} // Conditionally render type
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Choose a strong password"
-                required
-              />
-              <button
-                type="button"
-                className="toggle-password-btn"
-                onClick={togglePasswordVisibility}
-              >
-                <i className={isPasswordVisible ? "fas fa-eye-slash" : "fas fa-eye"}></i>
-              </button>
-            </div>
-          </div>
-          <button type="submit" className="register-btn">
-            Register
-          </button>
-        </form>
-        <div className="login-link">
-        <p>Already have an account? <a href="/login">Login</a></p>
+    const handleSubmit = async (e) => {
+        // e.preventDefault();
+        // try {
+        //     const response = await axios.post('http://localhost:3200/users/register', formData);
+        //     setSuccess(response.data.message);
+        //     setError(null);
+        // } catch (err) {
+        //     setError(err.response.data.message || 'An error occurred');
+        //     setSuccess(null);
+        // }
+    };
+
+    return (
+        <div className="container">
+            <h2>Register</h2>
+            {error && <div style={{ color: 'red' }}>{error}</div>}
+            {success && <div style={{ color: 'green' }}>{success}</div>}
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Username:</label>
+                    <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>Email:</label>
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>Phone:</label>
+                    <input type="text" name="phone" value={formData.phone} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>Date of Birth:</label>
+                    <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>Street:</label>
+                    <input type="text" name="address.street" value={formData.address.street} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>City:</label>
+                    <input type="text" name="address.city" value={formData.address.city} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>State:</label>
+                    <input type="text" name="address.state" value={formData.address.state} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>Postal Code:</label>
+                    <input type="text" name="address.postalCode" value={formData.address.postalCode} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>Country:</label>
+                    <input type="text" name="address.country" value={formData.address.country} onChange={handleChange} required />
+                </div>
+                <button type="submit">Register</button>
+            </form>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
-export default Register;
+export default RegisterForm;
