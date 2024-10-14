@@ -1,6 +1,6 @@
 const products = [
   // Electronics
-  { id: '1', name: 'Laptop', price: '$1000', image: '/path/to/laptop.jpg', description: 'High-performance laptop', category: 'Electronics' },
+  { id: '1', name: 'Laptop', price: '$1000', image: '', description: 'High Performance Laptop', category: 'Electronics' },
   { id: '2', name: 'Smartphone', price: '$500', image: '/path/to/smartphone.jpg', description: 'Latest model smartphone', category: 'Electronics' },
   { id: '3', name: 'Headphones', price: '$150', image: '/path/to/headphones.jpg', description: 'Noise-cancelling headphones', category: 'Electronics' },
   { id: '4', name: 'Smart Watch', price: '$200', image: '/path/to/smartwatch.jpg', description: 'Fitness tracking smartwatch', category: 'Electronics' },

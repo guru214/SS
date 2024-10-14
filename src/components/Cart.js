@@ -1,29 +1,28 @@
-import React, { useContext } from 'react';
-import { CartContext } from '../components/Cartcontext';
+import React from 'react';
+import { useCart } from './Cartcontext'; // Import the useCart hook
 
 const Cart = () => {
-  const { cartItems, removeFromCart } = useContext(CartContext); // Get cartItems and removeFromCart
+  const { cartItems, removeFromCart } = useCart(); // Get cartItems and removeFromCart from context
 
   return (
-    <div>
+    <div className="cart-page">
       <h2>Your Cart</h2>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty!</p>
+        <p>Your cart is empty.</p>
       ) : (
-        <ul className="list-group">
+        <div className="cart-items">
           {cartItems.map((item) => (
-            <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
-              <div>
-                <h5>{item.name}</h5>
-                <p>Quantity: {item.quantity}</p>
-                <p>Price: {item.price}</p>
-              </div>
-              <button className="btn btn-danger" onClick={() => removeFromCart(item.id)}>
-                Remove
-              </button>
-            </li>
+            <div key={item.id} className="cart-item">
+              <img src={item.image} alt={item.name} className="cart-item-image" />
+              <h4>{item.name}</h4>
+              <p>{item.price}</p>
+              <p>Quantity: {item.quantity}</p>
+
+              {/* Remove from cart button */}
+              <button onClick={() => removeFromCart(item.id)}>Remove</button>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

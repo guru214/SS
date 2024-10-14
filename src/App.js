@@ -12,52 +12,37 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 import ChangePassword from './components/ChangePassword';
-import CartProvider from './components/Cartcontext';
+import { CartProvider } from './components/Cartcontext'; // Named import
 import CategoryPage from './components/CategoryPage';
-import products from './components/products';  // Import the product list
+import products from './components/products'; 
 import HomePage from './components/Home';
-
-const cartItems = [];
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const [cartItems, setCartItems] = useState([]); // State for cart items
+
+  // Function to add product to cart
+  const addToCart = (product) => {
+    setCartItems([...cartItems, product]); // Add selected product to the cart
+  };
 
   return (
     <CartProvider>
       <Router>
         <Navigation user={user} setUser={setUser} />
         <Routes>
-          {/* Home Page */}
           <Route path="/" element={<Home />} />
-
-          {/* Category Listing */}
           <Route path="/categories" element={<Category />} />
-
-          {/* Product List */}
           <Route path="/products" element={<ProductList products={products} />} />
-
-          {/* Product Detail with Route Param */}
           <Route path="/products/:id" element={<ProductDetail products={products} />} />
-
-          {/* Cart */}
-          <Route path="/cart" element={<Cart cartItems={cartItems} />} />
-
-          {/* Checkout */}
+          <Route path="/cart" element={<Cart cartItems={cartItems} />} /> {/* Pass cartItems to Cart */}
           <Route path="/checkout" element={<Checkout />} />
-
-          {/* Authentication */}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-
-          {/* Profile & Settings */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/change-password" element={<ChangePassword />} />
-
-          {/* Category Page with Dynamic Route - Display products by category */}
-          <Route path="/category/:category" element={<CategoryPage products={products} />} />
-
-          {/* Home Page (Duplicate, can be removed if redundant) */}
+          <Route path="/category/:category" element={<CategoryPage products={products} addToCart={addToCart} />} /> {/* Pass addToCart function */}
           <Route path="/" element={<HomePage />} />
         </Routes>
       </Router>
