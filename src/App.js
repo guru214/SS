@@ -13,15 +13,9 @@ import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 import ChangePassword from './components/ChangePassword';
 import CartProvider from './components/Cartcontext';
-
-
-
-const products = [
-  { id: '1', name: 'Laptop', price: '$1000', image: '/path/to/laptop.jpg', description: 'High-performance laptop', category: 'Electronics' },
-  { id: '2', name: 'T-Shirt', price: '$20', image: '/path/to/tshirt.jpg', description: 'Comfortable cotton t-shirt', category: 'Fashion' },
-  { id: '3', name: 'Sofa', price: '$500', image: '/path/to/sofa.jpg', description: 'Luxury sofa', category: 'Furniture' },
-  { id: '4', name: 'Washing Machine', price: '$400', image: '/path/to/washing_machine.jpg', description: 'Efficient washing machine', category: 'Home Appliances' }
-];
+import CategoryPage from './components/CategoryPage';
+import products from './components/products';  // Import the product list
+import HomePage from './components/Home';
 
 const cartItems = [];
 
@@ -30,24 +24,44 @@ const App = () => {
 
   return (
     <CartProvider>
- <Router>
-      <Navigation user={user} setUser={setUser} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/categories" element={<Category />} />
-        <Route path="/products" element={<ProductList products={products} />} />
-        <Route path="/products/:id" element={<ProductDetail products={products} />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/change-password" element={<ChangePassword />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Navigation user={user} setUser={setUser} />
+        <Routes>
+          {/* Home Page */}
+          <Route path="/" element={<Home />} />
+
+          {/* Category Listing */}
+          <Route path="/categories" element={<Category />} />
+
+          {/* Product List */}
+          <Route path="/products" element={<ProductList products={products} />} />
+
+          {/* Product Detail with Route Param */}
+          <Route path="/products/:id" element={<ProductDetail products={products} />} />
+
+          {/* Cart */}
+          <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+
+          {/* Checkout */}
+          <Route path="/checkout" element={<Checkout />} />
+
+          {/* Authentication */}
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+
+          {/* Profile & Settings */}
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+
+          {/* Category Page with Dynamic Route - Display products by category */}
+          <Route path="/category/:category" element={<CategoryPage products={products} />} />
+
+          {/* Home Page (Duplicate, can be removed if redundant) */}
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
     </CartProvider>
-   
   );
 };
 

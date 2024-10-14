@@ -3,6 +3,7 @@ import { Navbar, Nav, NavDropdown, Container, Form, FormControl, Button } from '
 import { LinkContainer } from 'react-router-bootstrap';
 import './Navigation.css';  // Custom CSS for additional styling
 
+
 const Navigation = () => {
   return (
     <Navbar bg="light" expand="lg" className="shadow-sm">
@@ -23,22 +24,22 @@ const Navigation = () => {
             <LinkContainer to="/">
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
+            {/* // Navigation.js (for categories dropdown) */}
+<NavDropdown title="Categories" id="categories-dropdown">
+  <LinkContainer to="/category/electronics">
+    <NavDropdown.Item>Electronics</NavDropdown.Item>
+  </LinkContainer>
+  <LinkContainer to="/category/fashion">
+    <NavDropdown.Item>Fashion</NavDropdown.Item>
+  </LinkContainer>
+  <LinkContainer to="/category/furniture">
+    <NavDropdown.Item>Furniture</NavDropdown.Item>
+  </LinkContainer>
+  <LinkContainer to="/category/home-appliances">
+    <NavDropdown.Item>Home Appliances</NavDropdown.Item>
+  </LinkContainer>
+</NavDropdown>
 
-            {/* Dropdown for Categories */}
-            <NavDropdown title="Categories" id="categories-dropdown">
-              <LinkContainer to="/category/electronics">
-                <NavDropdown.Item>Electronics</NavDropdown.Item>
-              </LinkContainer>
-              <LinkContainer to="/category/fashion">
-                <NavDropdown.Item>Fashion</NavDropdown.Item>
-              </LinkContainer>
-              <LinkContainer to="/category/furniture">
-                <NavDropdown.Item>Furniture</NavDropdown.Item>
-              </LinkContainer>
-              <LinkContainer to="/category/home-appliances">
-                <NavDropdown.Item>Home Appliances</NavDropdown.Item>
-              </LinkContainer>
-            </NavDropdown>
 
             {/* Centered Search Bar */}
             <Form className="d-flex w-75 mx-auto">
