@@ -1,41 +1,50 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
-import axios from 'axios';
+import './Login.css';  // Import the login page CSS
 
-const Login = ({ setAuth }) => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [message, setMessage] = useState('');
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add logic for form submission (e.g., API call for login)
+    console.log('Logged in with', email, password);
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post('/api/login', formData);
-  //     setAuth(response.data);  // Save the token and user details to state or local storage
-  //     setMessage('Login successful!');
-  //   } catch (error) {
-  //     setMessage('Invalid email or password');
-  //   }
-  // };
-
   return (
-    // <Form onSubmit={handleSubmit}>
-    <Form>
-      <h2>Login</h2>
-      {message && <Alert variant="danger">{message}</Alert>}
-      <Form.Group>
-        <Form.Label>Email</Form.Label>
-        <Form.Control type="email" name="email" onChange={handleChange} />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" name="password" onChange={handleChange} />
-      </Form.Group>
-      <Button type="submit" variant="primary">Login</Button>
-    </Form>
+    <div className="login-container">
+      <div className="login-box">
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="login-btn">Login</button>
+        </form>
+        <div className="signup-link">
+          <p>Don't have an account? <a href="/register">Register</a></p>
+        </div>
+      </div>
+    </div>
   );
 };
 
