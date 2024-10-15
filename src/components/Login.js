@@ -1,51 +1,74 @@
 import React, { useState } from 'react';
-import './Login.css';  // Import the login page CSS
+import './Login.css';
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const LoginForm = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add logic for form submission (e.g., API call for login)
-    console.log('Logged in with', email, password);
+    alert('Login Successful!');
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2>Login</h2>
+        <h2 className="login-title">Login</h2>
         <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
+          <div className="form-group">
             <input
               type="email"
-              id="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email"
               required
             />
           </div>
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
+
+          <div className="form-group password-group">
             <input
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Password"
               required
             />
+            <span className="toggle-password" onClick={togglePasswordVisibility}>
+              {showPassword ? '👁️' : '👁️‍🗨️'}
+            </span>
           </div>
+
           <button type="submit" className="login-btn">Login</button>
-        </form>
-        <div className="signup-link">
+
+          <div className="forgot-password">
+            <a href="/changepassword">Forgot Password?</a>
+          </div>
+
+          <div className="signup-link">
           <p>Don't have an account? <a href="/register">Register</a></p>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default LoginForm;
