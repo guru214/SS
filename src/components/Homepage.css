@@ -24,6 +24,87 @@
     font-size: 1.2rem;
   }
 
+
+/* For large screens (desktop) */
+@media screen and (min-width: 1024px) {
+  .hero-slide {
+    height: 80vh;
+  }
+
+  .carousel-caption h1 {
+    font-size: 4rem; /* Large heading for large screens */
+  }
+
+  .carousel-caption p {
+    font-size: 1.5rem; /* Larger text for paragraph */
+  }
+
+  .carousel-caption .btn {
+    font-size: 1.25rem;
+    padding: 12px 25px;
+  }
+}
+
+/* For tablets (screens between 768px and 1024px) */
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .hero-slide {
+    height: 70vh; /* Smaller height for tablets */
+  }
+
+  .carousel-caption h1 {
+    font-size: 3.5rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1.125rem;
+  }
+
+  .carousel-caption .btn {
+    font-size: 1.125rem;
+    padding: 10px 20px;
+  }
+}
+
+/* For mobile devices (screens smaller than 768px) */
+@media screen and (max-width: 768px) {
+  .hero-slide {
+    height: 60vh; /* Further reduce height for small screens */
+  }
+
+  .carousel-caption h1 {
+    font-size: 2.5rem; /* Smaller heading on mobile */
+  }
+
+  .carousel-caption p {
+    font-size: 1rem;
+  }
+
+  .carousel-caption .btn {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+}
+
+/* For extra small devices (portrait phones, 480px and below) */
+@media screen and (max-width: 480px) {
+  .hero-slide {
+    height: 50vh; /* Even smaller height for extra small devices */
+  }
+
+  .carousel-caption h1 {
+    font-size: 2rem; /* Even smaller heading */
+  }
+
+  .carousel-caption p {
+    font-size: 0.9rem; /* Smaller paragraph font */
+  }
+
+  .carousel-caption .btn {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}
+
 /* 
   .hero-slide {
     height: 500px;
@@ -178,4 +259,82 @@
 .category-link {
   text-decoration: none;
   color: inherit;
+}
+
+/* Large Screens (Desktop) */
+/* @media screen and (min-width: 1024px) {
+  .carousel-caption h1 {
+    font-size: 4rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1.5rem;
+  }
+
+  .category-card, .product-card {
+    width: 22%; 
+  }
+} */
+
+/* Medium Screens (Tablets) */
+/* @media screen and (max-width: 1024px) and (min-width: 768px) {
+  .carousel-caption h1 {
+    font-size: 3.5rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1.25rem;
+  }
+
+  .category-card, .product-card {
+    width: 55%; 
+  } */
+/* 
+  .footer {
+    padding: 30px 10px;
+  }
+} */
+
+/* Small Screens (Mobile) */
+@media screen and (max-width: 768px) {
+  .hero-slide {
+    height: 60vh; /* Reduce height on mobile */
+  }
+
+  .carousel-caption h1 {
+    font-size: 2.5rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1rem;
+  }
+
+  .category-card, .product-card {
+    width: 100%; /* Stack cards for smaller screens */
+    margin-bottom: 20px;
+  }
+
+  .footer {
+    padding: 20px 10px;
+  }
+}
+
+/* Extra Small Screens */
+@media screen and (max-width: 480px) {
+  .carousel-caption h1 {
+    font-size: 2rem;
+  }
+
+  .carousel-caption p {
+    font-size: 0.9rem;
+  }
+
+  .category-card, .product-card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .footer {
+    padding: 20px 5px;
+  }
 }

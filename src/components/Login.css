@@ -4,14 +4,14 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #fff;
+  background: url('https://img.freepik.com/free-vector/geometric-gradient-futuristic-background_23-2149116406.jpg') no-repeat center center/cover;
   font-family: 'Arial', sans-serif;
-  padding: 0 20px;  /* Adding padding for responsiveness */
+  padding: 0 20px;
 }
 
-/* Login Box */
+
 .login-box {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9); 
   padding: 40px 30px;
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -19,6 +19,9 @@
   width: 100%;
   text-align: center;
 }
+
+
+
 
 .login-title {
   margin-bottom: 20px;
