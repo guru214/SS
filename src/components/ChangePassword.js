@@ -1,40 +1,69 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'; 
+import './ChangePassword.css';
 
+const ChangePassword = () => {
+  const navigate = useNavigate(); // useNavigate hook
 
-const ChangePassword = ({ userId }) => {
-  const [formData, setFormData] = useState({ oldPassword: '', newPassword: '' });
-  const [message, setMessage] = useState('');
+  // State to hold form data
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handlePasswordChange = () => {
+    if (newPassword !== confirmPassword) {
+      setErrorMessage("New password and confirm password do not match!");
+      return;
+    }
+    if (newPassword.length < 6) {
+      setErrorMessage("Password should be at least 6 characters long.");
+      return;
+    }
+
+    // Here you can add API call to change password
+
+    // On success, redirect to login page
+    navigate('/login');  // use navigate instead of history.push
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.put(`/api/${userId}/password`, formData);
-  //     setMessage(response.data.message);
-  //   } catch (error) {
-  //     setMessage(error.response.data.error);
-  //   }
-  // };
-
   return (
-    // <Form onSubmit={handleSubmit}>
-    <Form>
+    <div className="change-password-container">
       <h2>Change Password</h2>
-      {message && <Alert variant="info">{message}</Alert>}
-      <Form.Group>
-        <Form.Label>Old Password</Form.Label>
-        <Form.Control type="password" name="oldPassword" onChange={handleChange} />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>New Password</Form.Label>
-        <Form.Control type="password" name="newPassword" onChange={handleChange} />
-      </Form.Group>
-      <Button type="submit" variant="primary">Change Password</Button>
-    </Form>
+      <div className="form-container">
+        <div className="form-group">
+          <label>Old Password:</label>
+          <input 
+            type="password" 
+            value={oldPassword} 
+            onChange={(e) => setOldPassword(e.target.value)} 
+            placeholder="Enter old password" 
+          />
+        </div>
+        <div className="form-group">
+          <label>New Password:</label>
+          <input 
+            type="password" 
+            value={newPassword} 
+            onChange={(e) => setNewPassword(e.target.value)} 
+            placeholder="Enter new password" 
+          />
+        </div>
+        <div className="form-group">
+          <label>Confirm Password:</label>
+          <input 
+            type="password" 
+            value={confirmPassword} 
+            onChange={(e) => setConfirmPassword(e.target.value)} 
+            placeholder="Confirm new password" 
+          />
+        </div>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <button onClick={handlePasswordChange} className="btn-change-password">
+          Change Password
+        </button>
+      </div>
+    </div>
   );
 };
 

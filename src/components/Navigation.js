@@ -74,9 +74,9 @@ const Navigation = () => {
               <LinkContainer to="/profile">
                 <NavDropdown.Item>Profile</NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to="/edit-profile">
+              {/* <LinkContainer to="/edit-profile">
                 <NavDropdown.Item>Edit Profile</NavDropdown.Item>
-              </LinkContainer>
+              </LinkContainer> */}
               <LinkContainer to="/change-password">
                 <NavDropdown.Item>Change Password</NavDropdown.Item>
               </LinkContainer>
