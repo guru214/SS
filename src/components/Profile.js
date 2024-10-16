@@ -4,16 +4,16 @@ import './Profile.css';
 const ProfilePage = () => {
 
   const [user, setUser] = useState({
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    phone: '+1 (123) 456-7890',
-    dateOfBirth: '1990-01-01',
+    name: 'Sohail',
+    email: 'sohail@example.com',
+    phone: '+91 9505466569',
+    dateOfBirth: '14-06-2004',
     address: {
-      street: '123 Main St',
-      city: 'New York',
-      state: 'NY',
-      postalCode: '10001',
-      country: 'USA',
+      street: 'Madannapet street',
+      city: 'Hyd',
+      state: 'TS',
+      postalCode: '500059',
+      country: 'India',
     },
   });
 
