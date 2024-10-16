@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import HeroSection from './HeroSection';
 import FeaturedCategories from './FeaturedCategories';
 import PopularProducts from './PopularProducts';
@@ -11,12 +12,21 @@ const Home = ({ products }) => {
       {/* Hero Section for banners or promotional slides */}
       <HeroSection />
 
-      {/* Featured Categories */}
-      <FeaturedCategories />
+      <Container className="mt-5">
+        {/* Featured Categories */}
+        <Row className="mb-5">
+          <Col>
+            <FeaturedCategories />
+          </Col>
+        </Row>
 
-      {/* Popular Products */}
-      <PopularProducts products={products} />
-
+        {/* Popular Products */}
+        <Row className="mb-5">
+          <Col>
+            <PopularProducts products={products} />
+          </Col>
+        </Row>
+      </Container>
 
       {/* Footer */}
       <Footer />

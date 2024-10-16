@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './Register.css'; // CSS styles
+import { Container, Row, Col, Form, Button } from 'react-bootstrap'; 
+import './Register.css'; 
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -43,39 +44,45 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="form-container">
-      <div className="form-header">
+    <Container className="form-container">
+      <div className="form-header text-center mb-4">
         <h2>Register</h2>
       </div>
-      <form onSubmit={handleSubmit}>
-        <div className="form-row">
-          <div className="form-group">
-            <label>First Name</label>
-            <input
-              type="text"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              placeholder="First Name"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Last Name</label>
-            <input
-              type="text"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              placeholder="Last Name"
-              required
-            />
-          </div>
-        </div>
+      <Form onSubmit={handleSubmit}>
+        {/* Name Fields */}
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="formFirstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                placeholder="First Name"
+                required
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="formLastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                placeholder="Last Name"
+                required
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-        <div className="form-group">
-          <label>Email Address</label>
-          <input
+        {/* Email */}
+        <Form.Group controlId="formEmail" className="mb-3">
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control
             type="email"
             name="email"
             value={formData.email}
@@ -83,11 +90,12 @@ const RegisterForm = () => {
             placeholder="Email Address"
             required
           />
-        </div>
+        </Form.Group>
 
-        <div className="form-group">
-          <label>Phone Number</label>
-          <input
+        {/* Phone */}
+        <Form.Group controlId="formPhone" className="mb-3">
+          <Form.Label>Phone Number</Form.Label>
+          <Form.Control
             type="tel"
             name="phone"
             value={formData.phone}
@@ -95,11 +103,12 @@ const RegisterForm = () => {
             placeholder="Phone Number"
             required
           />
-        </div>
+        </Form.Group>
 
-        <div className="form-group">
-          <label>Password</label>
-          <input
+        {/* Password */}
+        <Form.Group controlId="formPassword" className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             type="password"
             name="password"
             value={formData.password}
@@ -107,22 +116,24 @@ const RegisterForm = () => {
             placeholder="Password"
             required
           />
-        </div>
+        </Form.Group>
 
-        <div className="form-group">
-          <label>Date of Birth</label>
-          <input
+        {/* Date of Birth */}
+        <Form.Group controlId="formDateOfBirth" className="mb-3">
+          <Form.Label>Date of Birth</Form.Label>
+          <Form.Control
             type="date"
             name="dateOfBirth"
             value={formData.dateOfBirth}
             onChange={handleChange}
             required
           />
-        </div>
+        </Form.Group>
 
-        <div className="form-group">
-          <label>Street Address</label>
-          <input
+        {/* Address Fields */}
+        <Form.Group controlId="formStreet" className="mb-3">
+          <Form.Label>Street Address</Form.Label>
+          <Form.Control
             type="text"
             name="address.street"
             value={formData.address.street}
@@ -130,47 +141,54 @@ const RegisterForm = () => {
             placeholder="Street Address"
             required
           />
-        </div>
+        </Form.Group>
 
-        <div className="form-row">
-          <div className="form-group">
-            <label>City</label>
-            <input
-              type="text"
-              name="address.city"
-              value={formData.address.city}
-              onChange={handleChange}
-              placeholder="City"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>State</label>
-            <input
-              type="text"
-              name="address.state"
-              value={formData.address.state}
-              onChange={handleChange}
-              placeholder="State"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Postal Code</label>
-            <input
-              type="text"
-              name="address.postalCode"
-              value={formData.address.postalCode}
-              onChange={handleChange}
-              placeholder="Postal Code"
-              required
-            />
-          </div>
-        </div>
+        <Row className="mb-3">
+          <Col md={4}>
+            <Form.Group controlId="formCity">
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                type="text"
+                name="address.city"
+                value={formData.address.city}
+                onChange={handleChange}
+                placeholder="City"
+                required
+              />
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group controlId="formState">
+              <Form.Label>State</Form.Label>
+              <Form.Control
+                type="text"
+                name="address.state"
+                value={formData.address.state}
+                onChange={handleChange}
+                placeholder="State"
+                required
+              />
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group controlId="formPostalCode">
+              <Form.Label>Postal Code</Form.Label>
+              <Form.Control
+                type="text"
+                name="address.postalCode"
+                value={formData.address.postalCode}
+                onChange={handleChange}
+                placeholder="Postal Code"
+                required
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-        <div className="form-group">
-          <label>Country</label>
-          <input
+        {/* Country */}
+        <Form.Group controlId="formCountry" className="mb-3">
+          <Form.Label>Country</Form.Label>
+          <Form.Control
             type="text"
             name="address.country"
             value={formData.address.country}
@@ -178,14 +196,19 @@ const RegisterForm = () => {
             placeholder="Country"
             required
           />
-        </div>
+        </Form.Group>
 
-        <button type="submit" className="submit-btn">Register</button>
-      </form> <br></br>
-      <div className="login-link">
-          <p>Already have an account? <a href="/login">Login</a></p>
-        </div>
-    </div>
+        {/* Submit Button */}
+        <Button variant="primary" type="submit" className="w-100">
+          Register
+        </Button>
+      </Form>
+
+      {/* Login Link */}
+      <div className="login-link text-center mt-3">
+        <p>Already have an account? <a href="/login">Login</a></p>
+      </div>
+    </Container>
   );
 };
 

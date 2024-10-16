@@ -1,70 +1,136 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-import './ChangePassword.css';
+import { Form, Button, Alert } from 'react-bootstrap';
+import './PasswordPage.css';
 
 const ChangePassword = () => {
-  const navigate = useNavigate(); // useNavigate hook
-
-  // State to hold form data
-  const [oldPassword, setOldPassword] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage] = useState(null);
 
-  const handlePasswordChange = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (newPassword !== confirmPassword) {
-      setErrorMessage("New password and confirm password do not match!");
-      return;
+      setMessage('Passwords do not match');
+    } else {
+      setMessage('Password changed successfully');
+      // Perform API call for password change
     }
-    if (newPassword.length < 6) {
-      setErrorMessage("Password should be at least 6 characters long.");
-      return;
-    }
-
-    // Here you can add API call to change password
-
-    // On success, redirect to login page
-    navigate('/login');  // use navigate instead of history.push
   };
 
   return (
-    <div className="change-password-container">
-      <h2>Change Password</h2>
-      <div className="form-container">
-        <div className="form-group">
-          <label>Old Password:</label>
-          <input 
-            type="password" 
-            value={oldPassword} 
-            onChange={(e) => setOldPassword(e.target.value)} 
-            placeholder="Enter old password" 
+    <div className="form-container">
+      <h3>Change Password</h3>
+      {message && <Alert variant="success">{message}</Alert>}
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="currentPassword">
+          <Form.Label>Current Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter current password"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+            required
           />
-        </div>
-        <div className="form-group">
-          <label>New Password:</label>
-          <input 
-            type="password" 
-            value={newPassword} 
-            onChange={(e) => setNewPassword(e.target.value)} 
-            placeholder="Enter new password" 
+        </Form.Group>
+
+        <Form.Group controlId="newPassword">
+          <Form.Label>New Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter new password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            required
           />
-        </div>
-        <div className="form-group">
-          <label>Confirm Password:</label>
-          <input 
-            type="password" 
-            value={confirmPassword} 
-            onChange={(e) => setConfirmPassword(e.target.value)} 
-            placeholder="Confirm new password" 
+        </Form.Group>
+
+        <Form.Group controlId="confirmPassword">
+          <Form.Label>Confirm New Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Confirm new password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
           />
-        </div>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <button onClick={handlePasswordChange} className="btn-change-password">
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
           Change Password
-        </button>
-      </div>
+        </Button>
+      </Form>
     </div>
   );
 };
 
-export default ChangePassword;
+const ForgotPassword = () => {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState(null);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email) {
+      setMessage('A password reset link has been sent to your email.');
+      setError(null);
+    } else {
+      setError('Please enter a valid email address.');
+    }
+  };
+
+  return (
+    <div className="form-container">
+      <h3>Forgot Password</h3>
+      {message && <Alert variant="success">{message}</Alert>}
+      {error && <Alert variant="danger">{error}</Alert>}
+
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="email">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Send Reset Link
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
+const PasswordPage = () => {
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+
+  return (
+    <div className="password-page">
+      <div className="text-center">
+        <Button
+          variant={showForgotPassword ? 'secondary' : 'primary'}
+          onClick={() => setShowForgotPassword(false)}
+          className="m-2"
+        >
+          Change Password
+        </Button>
+        <Button
+          variant={showForgotPassword ? 'primary' : 'secondary'}
+          onClick={() => setShowForgotPassword(true)}
+          className="m-2"
+        >
+          Forgot Password
+        </Button>
+      </div>
+
+      {/* Toggle between Change Password and Forgot Password */}
+      {showForgotPassword ? <ForgotPassword /> : <ChangePassword />}
+    </div>
+  );
+};
+
+export default PasswordPage;
