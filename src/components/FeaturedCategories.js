@@ -37,16 +37,16 @@ import { Link } from 'react-router-dom';
 import './Homepage.css';  // Assuming you have CSS for layout and styling
 
 const featuredCategories = [
-  { name: 'Electronics', image: 'https://t3.ftcdn.net/jpg/01/70/80/52/360_F_170805293_mP8dwQvg7ip4tFRyXNs7xhIs470dBArn.jpg', categoryPath: 'electronics' },
-  { name: 'Fashion', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5FwUPSog5pIe73xCvhRy6bEDjTW1JkQa1Dw&s', categoryPath: 'fashion' },
-  { name: 'Furniture', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa92S_cBe7JDfbiwL9jhdOfSv_SjHlZG6f9w&s', categoryPath: 'furniture' },
-  { name: 'Home Appliances', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSoZPc6i9Oh2TkVCCzdgVF-a2xFa-MpKaiUQ&s', categoryPath: 'home-appliances' }
+  { name: 'Devops', image: 'https://raygun.com/blog/images/best-devops-tools/feature-23.jpg', categoryPath: 'electronics' },
+  { name: 'AWS', image: 'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_aws.jpg', categoryPath: 'fashion' },
+  { name: 'Azure', image: 'https://www.singlemindconsulting.com/wp-content/uploads/2020/08/building-highly-scalable-apps-with-microsoft-azure-1024x601.jpg', categoryPath: 'furniture' },
+  // { name: 'Home Appliances', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSoZPc6i9Oh2TkVCCzdgVF-a2xFa-MpKaiUQ&s', categoryPath: 'home-appliances' }
 ];
 
 const Home = () => {
   return (
     <div className="home">
-      <h2>Featured Categories</h2>
+      <h2>COURSES</h2>
       <div className="featured-categories">
         {featuredCategories.map((category) => (
           <Link to={`/category/${category.categoryPath}`} key={category.name} className="category-link">

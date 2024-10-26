@@ -1,3 +1,4 @@
+
 .hero-slide {
     height: 600px;
     object-fit: cover;
@@ -33,6 +34,7 @@
 
   .carousel-caption h1 {
     font-size: 4rem; /* Large heading for large screens */
+    
   }
 
   .carousel-caption p {
@@ -105,76 +107,9 @@
   }
 }
 
-/* 
-  .hero-slide {
-    height: 500px;
-    object-fit: cover;
-  }
-  
-  .carousel-caption h1 {
-    font-size: 3rem;
-    font-weight: bold;
-  }
-  
-  .carousel-caption p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-  }
-  
-  .carousel-caption button {
-    padding: 10px 20px;
-    font-size: 1.1rem;
-  }
-   */
 
 
-/* 
-  .featured-categories {
-    background-color: #f8f9fa;
-  }
-  
-  .category-card {
-    border: none;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .category-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .category-card img {
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .category-card .card-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-  } */
-
-  .popular-products {
-    background-color: #ffffff;
-  }
-  
-  .product-card {
-    border: none;
-    transition: box-shadow 0.3s ease-in-out;
-  }
-  
-  .product-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  .product-card img {
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .product-card .card-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-
+ 
   .footer {
     background-color: #343a40;
     color: #ffffff;
@@ -261,39 +196,6 @@
   color: inherit;
 }
 
-/* Large Screens (Desktop) */
-/* @media screen and (min-width: 1024px) {
-  .carousel-caption h1 {
-    font-size: 4rem;
-  }
-
-  .carousel-caption p {
-    font-size: 1.5rem;
-  }
-
-  .category-card, .product-card {
-    width: 22%; 
-  }
-} */
-
-/* Medium Screens (Tablets) */
-/* @media screen and (max-width: 1024px) and (min-width: 768px) {
-  .carousel-caption h1 {
-    font-size: 3.5rem;
-  }
-
-  .carousel-caption p {
-    font-size: 1.25rem;
-  }
-
-  .category-card, .product-card {
-    width: 55%; 
-  } */
-/* 
-  .footer {
-    padding: 30px 10px;
-  }
-} */
 
 /* Small Screens (Mobile) */
 @media screen and (max-width: 768px) {

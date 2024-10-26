@@ -2,9 +2,9 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import HeroSection from './HeroSection';
 import FeaturedCategories from './FeaturedCategories';
-import PopularProducts from './PopularProducts';
+
 import Footer from './Footer';
-import './Homepage.css'; // Custom CSS for styling
+import './Homepage.css'; 
 
 const Home = ({ products }) => {
   return (
@@ -20,12 +20,7 @@ const Home = ({ products }) => {
           </Col>
         </Row>
 
-        {/* Popular Products */}
-        <Row className="mb-5">
-          <Col>
-            <PopularProducts products={products} />
-          </Col>
-        </Row>
+      
       </Container>
 
       {/* Footer */}
