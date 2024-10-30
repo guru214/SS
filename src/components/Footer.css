@@ -1,0 +1,71 @@
+/* Basic footer layout */
+.footer {
+    background-color: #333;
+    color: #f1f1f1;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .footer-content > div {
+    margin: 10px;
+  }
+  
+  /* Company info */
+  .company-info h3 {
+    font-size: 1.5em;
+    color: #E8553D;
+  }
+  
+  .company-info p {
+    font-size: 0.95em;
+    color: #bbb;
+  }
+  
+  /* Contact info styling */
+  .contact-info p {
+    margin: 5px 0;
+  }
+  
+  .contact-info svg {
+    margin-right: 8px;
+    color: #E8553D;
+  }
+  
+  /* Social media links */
+  .social-media a {
+    display: inline-block;
+    color: #f1f1f1;
+    margin: 5px 10px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+  }
+  
+  .social-media a:hover {
+    color: #E8553D;
+  }
+  
+  .social-media svg {
+    margin-right: 5px;
+  }
+  
+  /* Footer bottom section */
+  .footer-bottom {
+    border-top: 1px solid #555;
+    padding-top: 10px;
+    margin-top: 10px;
+    color: #bbb;
+    font-size: 0.85em;
+  }
+  
