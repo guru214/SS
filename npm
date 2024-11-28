@@ -1,36 +1,39 @@
-pipeline {
+ pipeline {
     agent any
+
     options {
         timeout(time: 20, unit: 'MINUTES')
     }
+
     triggers {
         pollSCM('H */5 * * 1-5')
     }
+
     stages {
-        stage('git cloning') {
+        stage('Git Cloning') {
             steps {
-                git url: 'https://github.com/guru214/SS.git',
+                git url: 'https://github.com/guru214/SS.git', 
                 branch: 'main1'
             }
-            stage('install') {
-                steps {
-                    sh 'npm install'
-                }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
             }
-
-
         }
     }
-    p0st {
-         sucesss {
-            mail to:'g9477715@gmail.com',
-            subject: 'build done',
-            body: 'the build was successful.'
-         }
-         failure {
+
+    post {
+        success {
             mail to: 'g9477715@gmail.com',
-            subject: 'build failed',
-            body: 'the build was failed.'
-         }
-}
+                 subject: 'Build Successful',
+                 body: 'The build was successful.'
+        }
+        failure {
+            mail to: 'g9477715@gmail.com',
+                 subject: 'Build Failed',
+                 body: 'The build failed.'
+        }
+    }
 }
